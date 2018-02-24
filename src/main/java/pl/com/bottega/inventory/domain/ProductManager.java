@@ -22,17 +22,5 @@ public class ProductManager {
         products.add(new Product(code, amount));
     }
 
-    private void sellProduct(String code, Integer amount){
-        for (Product item: products){
-            if (item.getCode().equals(code))
-                item.decreaseCount(amount);
-        }
-    }
 
-    public void calculateProducts(Set<Product> products) {
-        for (Product product: products){
-            product.increaseCount(product.getCount());
-        }
-
-    }
 }
