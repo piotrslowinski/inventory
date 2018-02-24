@@ -4,15 +4,15 @@ import pl.com.bottega.inventory.domain.commands.PurchaseProductCommand;
 
 import java.util.Map;
 
-public class PurchaseResultDto extends PurchaseResult {
+public class PurchaseSuccessfulResult extends PurchaseResult {
 
     private boolean success;
 
     private Map<String, Integer> purchasedProducts;
 
-    public PurchaseResultDto(Boolean succes, PurchaseProductCommand cmd) {
+    public PurchaseSuccessfulResult(Boolean success, Map<String, Integer> products) {
         this.success = true;
-        this.purchasedProducts = cmd.getProducts();
+        this.purchasedProducts = products;
     }
 
     public boolean isSuccess() {

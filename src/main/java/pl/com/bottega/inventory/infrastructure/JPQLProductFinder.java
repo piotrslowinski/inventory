@@ -26,6 +26,7 @@ public class JPQLProductFinder implements ProductFinder {
         return product;
     }
 
+    //Useful for JSON checkout
     @Override
     public List<ProductDto> getAll() {
         List<ProductDto> results = entityManager.createQuery("SELECT NEW " +

@@ -12,8 +12,24 @@ public class PurchaseNegativeResult extends PurchaseResult {
     private Map<String , Integer> missingProducts;
 
 
-    public PurchaseNegativeResult(boolean success, PurchaseProductCommand cmd) {
+    public PurchaseNegativeResult(boolean success,  Map<String, Integer> products) {
         this.success = success;
+        this.missingProducts = products;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public Map<String, Integer> getMissingProducts() {
+        return missingProducts;
+    }
+
+    public void setMissingProducts(Map<String, Integer> missingProducts) {
         this.missingProducts = missingProducts;
     }
 }

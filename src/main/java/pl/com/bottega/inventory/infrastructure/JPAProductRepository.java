@@ -7,7 +7,9 @@ import pl.com.bottega.inventory.domain.repositories.ProductRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -35,8 +37,15 @@ public class JPAProductRepository implements ProductRepository {
         return get(code).isPresent();
     }
 
+    @Override
+    public List<Product> getProductList(String code) {
+        Query query = entityManager.createQuery("SELECT p FROM Product p WHERE p.skuCode = :skuCode");
+        query.setParameter("skuCode", code);
+        return (List<Product>) query.getResultList();
+    }
+
     @Transactional
-    public Optional<Object> get(String skuCode) {
+    public Optional<Product> get(String skuCode) {
         try {
             Product product = (Product) entityManager.createQuery("FROM Product p WHERE p.skuCode = :skuCode").
                     setParameter("skuCode", skuCode)

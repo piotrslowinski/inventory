@@ -29,7 +29,7 @@ public class PurchaseProductCommand implements Command {
     }
 
     private void validateMinimumFields(Map<String, Integer> products, Validatable.ValidationErrors errors) {
-            if (products.keySet().size() == 0)
+            if (products == null || products.isEmpty())
                 errors.add("skus", "are required");
 
     }

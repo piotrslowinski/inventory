@@ -1,10 +1,7 @@
 package pl.com.bottega.inventory.ui;
 
 import org.springframework.web.bind.annotation.*;
-import pl.com.bottega.inventory.api.CommandGateway;
-import pl.com.bottega.inventory.api.ProductDto;
-import pl.com.bottega.inventory.api.ProductFinder;
-import pl.com.bottega.inventory.api.PurchaseResultDto;
+import pl.com.bottega.inventory.api.*;
 import pl.com.bottega.inventory.domain.commands.AddProductCommand;
 import pl.com.bottega.inventory.domain.commands.PurchaseProductCommand;
 
@@ -30,14 +27,14 @@ public class ProductController {
     }
 
     @PostMapping("/purchase")
-    public PurchaseResultDto purchaseProducts(@RequestBody Map<String, Integer> products){
+    public PurchaseResult purchaseProducts(@RequestBody Map<String, Integer> products){
         PurchaseProductCommand cmd = new PurchaseProductCommand();
         cmd.setProducts(products);
-        gateway.execute(cmd);
 
-        return new PurchaseResultDto(true, cmd);
+        return gateway.execute(cmd);
     }
 
+    //useful for JSON checkout
     @GetMapping("/inventory")
     public List<ProductDto> getAll(){
         return productFinder.getAll();
